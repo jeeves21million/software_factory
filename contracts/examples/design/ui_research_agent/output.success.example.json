@@ -1,0 +1,72 @@
+{
+  "status": "success",
+  "summary": "Completed startup UI research across direct and adjacent budgeting products.",
+  "artifacts": [
+    {
+      "artifact_id": "art_ui_research_001",
+      "job_id": "job_20260218_001",
+      "stage": "design_research",
+      "agent": "ui_research_agent",
+      "kind": "research_pack",
+      "uri": "s3://software-factory-artifacts/pulsebudget/design/research_pack_v1.json",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "created_at": "2026-02-18T18:14:10Z"
+    }
+  ],
+  "payload": {
+    "similar_products": [
+      {
+        "name": "YNAB",
+        "link": "https://www.ynab.com",
+        "note": "Strong zero-based budgeting mental model and onboarding education flow."
+      },
+      {
+        "name": "Monarch Money",
+        "link": "https://www.monarchmoney.com",
+        "note": "Clear account overview and collaborative household context."
+      },
+      {
+        "name": "Copilot Money",
+        "link": "https://copilot.money",
+        "note": "Effective trend visualizations and category recategorization UX."
+      }
+    ],
+    "common_flows": [
+      "Account setup and bank linking",
+      "Category-based transaction review",
+      "Monthly budget planning",
+      "Goal creation and contribution tracking",
+      "Weekly summary and alert review"
+    ],
+    "inspirations": [
+      {
+        "type": "link",
+        "value": "https://www.monarchmoney.com",
+        "comment": "Adopt information hierarchy for cash-flow snapshot cards."
+      },
+      {
+        "type": "image",
+        "value": "https://cdn.example.com/inspo/goal-progress-cards.png",
+        "comment": "Use this compact goal-card pattern for couples view."
+      },
+      {
+        "type": "comment",
+        "comment": "Use neutral, low-anxiety color accents for overspending warnings."
+      }
+    ]
+  },
+  "handoff": {
+    "next_stage": "design_brief",
+    "next_agent": "design_brief_agent",
+    "payload": {
+      "project_summary": "Budgeting app for couples with shared goals and weekly forecasting.",
+      "recommended_flows": [
+        "Onboarding",
+        "Dashboard",
+        "Transaction review",
+        "Goals",
+        "Weekly summary"
+      ]
+    }
+  }
+}

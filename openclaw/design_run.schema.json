@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/openclaw/design_run.schema.json",
+  "title": "OpenClaw Design Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "agent_pack_repo",
+    "agent_pack_ref",
+    "contract_version",
+    "inputs",
+    "routing",
+    "outputs"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "agent_pack_repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_pack_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Pinned git ref for software_factory_agents (tag, branch, or commit sha)."
+    },
+    "contract_version": {
+      "type": "string",
+      "pattern": "^v[0-9]+(\\.[0-9]+)*$"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prd", "use_cases"],
+      "properties": {
+        "prd": { "type": "string", "minLength": 1 },
+        "use_cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "inspirations": { "type": "string" },
+        "brand_assets_dir": { "type": "string" },
+        "extra_context": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_research", "use_brand_foundation_if_missing_assets"],
+      "properties": {
+        "use_research": {
+          "type": "string",
+          "enum": ["auto", "always", "never"]
+        },
+        "use_brand_foundation_if_missing_assets": {
+          "type": "boolean"
+        },
+        "force_path": {
+          "type": "string",
+          "enum": [
+            "design_research_to_design_brief",
+            "design_brand_to_design_brief",
+            "design_brief_only"
+          ]
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_dir", "trace_file"],
+      "properties": {
+        "artifact_dir": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative path in app repo for generated design artifacts."
+        },
+        "trace_file": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative path in app repo for event trace JSONL."
+        },
+        "open_pr": {
+          "type": "boolean",
+          "default": true
+        },
+        "pr_branch_prefix": {
+          "type": "string",
+          "default": "openclaw/design"
+        }
+      }
+    }
+  }
+}

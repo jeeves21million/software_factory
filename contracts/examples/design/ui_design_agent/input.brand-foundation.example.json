@@ -1,0 +1,46 @@
+{
+  "job": {
+    "job_id": "job_20260218_006",
+    "stage": "design",
+    "agent": "ui_design_agent",
+    "contract_version": "v1.2.0",
+    "created_at": "2026-02-18T18:50:00Z",
+    "attempt": 1,
+    "retry_count": 0,
+    "acceptance_criteria": [
+      "Produce v1 comps from generated brand foundation"
+    ],
+    "input": {
+      "source": "design_brief_agent"
+    }
+  },
+  "payload": {
+    "design_brief": [
+      "Use startup brand foundation to drive palette and tone.",
+      "Prioritize mobile-first dashboard layout."
+    ],
+    "inspirations": [
+      {
+        "type": "comment",
+        "comment": "Favor clarity and trust over novelty."
+      }
+    ],
+    "brand_foundation": {
+      "positioning": "A steady money partner for real households.",
+      "voice_tone": [
+        "supportive",
+        "direct"
+      ],
+      "visual_direction": [
+        "clean card system",
+        "soft contrast"
+      ]
+    },
+    "required_screens": [
+      "Onboarding",
+      "Dashboard",
+      "Goals"
+    ],
+    "accessibility_target": "wcag_2_1_aa"
+  }
+}

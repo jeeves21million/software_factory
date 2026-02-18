@@ -1,0 +1,6 @@
+Brand guidelines PDF: /client_uploads/pulsebudget/brand_guidelines_v1.pdf
+Primary logo SVG: /client_uploads/pulsebudget/logo_primary_lockup.svg
+Logo mark SVG: /client_uploads/pulsebudget/logo_mark.svg
+Approved colors: #0B1F3A, #2D6CDF, #E8EEF8, #2E7D32, #C62828
+Approved fonts: Manrope, IBM Plex Sans
+Icon library preference: Phosphor

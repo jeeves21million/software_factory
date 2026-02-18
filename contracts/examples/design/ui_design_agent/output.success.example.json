@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "summary": "Delivered hi-fidelity design package and implementation-ready tokens/specs.",
+  "artifacts": [
+    {
+      "artifact_id": "art_ui_design_001",
+      "job_id": "job_20260218_005",
+      "stage": "design",
+      "agent": "ui_design_agent",
+      "kind": "ui_comp_set",
+      "uri": "s3://software-factory-artifacts/pulsebudget/design/figma_export_v1.zip",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "created_at": "2026-02-18T19:00:00Z"
+    }
+  ],
+  "payload": {
+    "comp_set_uri": "figma://file/pulsebudget-v1/screens",
+    "token_set_uri": "s3://software-factory-artifacts/pulsebudget/design/tokens_v1.json",
+    "component_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/component_specs_v1.md",
+    "screen_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/screen_specs_v1.md"
+  },
+  "handoff": {
+    "next_stage": "implementation",
+    "next_agent": "frontend_dev_agent",
+    "payload": {
+      "design_release": "v1.0.0",
+      "ready_for_build": true
+    }
+  }
+}

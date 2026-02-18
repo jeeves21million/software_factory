@@ -1,0 +1,71 @@
+{
+  "job": {
+    "job_id": "job_20260218_003",
+    "stage": "design_brief",
+    "agent": "design_brief_agent",
+    "contract_version": "v1.2.0",
+    "created_at": "2026-02-18T18:30:00Z",
+    "attempt": 1,
+    "retry_count": 0,
+    "acceptance_criteria": [
+      "Produce implementation-ready design brief",
+      "Map inspirations to key screens"
+    ],
+    "input": {
+      "source": "founder_and_brand_team"
+    }
+  },
+  "payload": {
+    "project_summary": "PulseBudget is a web app that helps couples budget together and avoid month-end surprises.",
+    "inspirations": [
+      {
+        "type": "link",
+        "value": "https://www.monarchmoney.com",
+        "comment": "Love dashboard hierarchy and account summary composition."
+      },
+      {
+        "type": "image",
+        "value": "https://cdn.example.com/inspo/weekly-summary-cards.png",
+        "comment": "Use this density for weekly summary cards."
+      },
+      {
+        "type": "comment",
+        "comment": "Avoid noisy gradients and overloaded charts on first view."
+      }
+    ],
+    "brand_pack": {
+      "brand_guidelines": [
+        "s3://software-factory-artifacts/pulsebudget/design/brand_guidelines_v1.pdf"
+      ],
+      "logos": [
+        "s3://software-factory-artifacts/pulsebudget/design/logo_primary_lockup.svg"
+      ],
+      "approved_colors": [
+        "#0B1F3A",
+        "#2D6CDF",
+        "#E8EEF8"
+      ],
+      "approved_fonts": [
+        "Manrope",
+        "IBM Plex Sans"
+      ],
+      "icon_library": "Phosphor"
+    },
+    "required_screens": [
+      "Onboarding",
+      "Dashboard",
+      "Transactions",
+      "Goals",
+      "Weekly Summary",
+      "Settings"
+    ],
+    "product_surface": [
+      "web"
+    ],
+    "accessibility_target": "wcag_2_2_aa",
+    "technical_constraints": [
+      "Use Tailwind tokens",
+      "Target responsive widths 360, 768, 1280"
+    ]
+  }
+}

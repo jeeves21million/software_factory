@@ -1,0 +1,25 @@
+run_id: pulsebudget-design-001
+agent_pack_repo: git@github.com:your-org/software_factory_agents.git
+agent_pack_ref: a010f3f
+contract_version: v1.2.0
+
+inputs:
+  prd: docs/PRD.md
+  use_cases:
+    - docs/flows/onboarding.md
+    - docs/flows/calendar_scheduling.md
+  inspirations: docs/design/inspirations.md
+  brand_assets_dir: docs/brand
+  extra_context:
+    - docs/constraints/accessibility.md
+
+routing:
+  use_research: auto
+  use_brand_foundation_if_missing_assets: true
+  # force_path: design_brief_only
+
+outputs:
+  artifact_dir: artifacts/design/pulsebudget-design-001
+  trace_file: artifacts/design/pulsebudget-design-001/trace/events.jsonl
+  open_pr: true
+  pr_branch_prefix: openclaw/design

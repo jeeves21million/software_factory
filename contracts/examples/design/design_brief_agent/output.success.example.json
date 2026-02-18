@@ -1,0 +1,57 @@
+{
+  "status": "success",
+  "summary": "Design brief finalized with clear screen priorities and implementation constraints.",
+  "artifacts": [
+    {
+      "artifact_id": "art_design_brief_001",
+      "job_id": "job_20260218_003",
+      "stage": "design_brief",
+      "agent": "design_brief_agent",
+      "kind": "design_brief",
+      "uri": "s3://software-factory-artifacts/pulsebudget/design/design_brief_v1.md",
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "created_at": "2026-02-18T18:38:00Z"
+    }
+  ],
+  "payload": {
+    "design_brief": [
+      "Primary user goal: quickly understand household cash position.",
+      "Dashboard must surface account balance, upcoming bills, and weekly burn rate.",
+      "Goal creation flow should be completable in under 60 seconds.",
+      "Warnings should use calm language and avoid shame framing.",
+      "All primary actions must be reachable within two taps/clicks from dashboard."
+    ],
+    "inspirations": [
+      {
+        "type": "link",
+        "value": "https://www.monarchmoney.com",
+        "comment": "Reference only for information hierarchy, not visual cloning."
+      },
+      {
+        "type": "image",
+        "value": "https://cdn.example.com/inspo/weekly-summary-cards.png",
+        "comment": "Card rhythm and spacing benchmark."
+      },
+      {
+        "type": "comment",
+        "comment": "Bias toward calm, practical UI with low cognitive load."
+      }
+    ]
+  },
+  "handoff": {
+    "next_stage": "design",
+    "next_agent": "ui_design_agent",
+    "payload": {
+      "design_brief": [
+        "Prioritize dashboard clarity over visual novelty.",
+        "Ensure couples context appears in first-run experience."
+      ],
+      "inspirations": [
+        {
+          "type": "comment",
+          "comment": "Use color sparingly for semantic emphasis only."
+        }
+      ]
+    }
+  }
+}

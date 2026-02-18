@@ -1,0 +1,7 @@
+Platform: Web app
+Initial screens:
+- Onboarding
+- Dashboard
+- Goals
+- Weekly Summary
+Accessibility target: WCAG 2.1 AA

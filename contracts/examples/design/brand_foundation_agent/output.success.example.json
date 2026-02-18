@@ -1,0 +1,58 @@
+{
+  "status": "success",
+  "summary": "Generated initial brand foundation and starter brand pack for first design iteration.",
+  "artifacts": [
+    {
+      "artifact_id": "art_brand_foundation_001",
+      "job_id": "job_20260218_002",
+      "stage": "design_brand",
+      "agent": "brand_foundation_agent",
+      "kind": "brand_foundation",
+      "uri": "s3://software-factory-artifacts/pulsebudget/design/brand_foundation_v1.json",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "created_at": "2026-02-18T18:23:00Z"
+    }
+  ],
+  "payload": {
+    "brand_foundation": {
+      "positioning": "A calm co-pilot for household money decisions.",
+      "voice_tone": [
+        "clear",
+        "supportive",
+        "non-judgmental"
+      ],
+      "visual_direction": [
+        "clean layouts with generous spacing",
+        "subtle financial-data emphasis",
+        "trust-forward neutral palette"
+      ]
+    },
+    "brand_pack": {
+      "brand_guidelines": [
+        "s3://software-factory-artifacts/pulsebudget/design/brand_guidelines_v1.pdf"
+      ],
+      "logos": [
+        "s3://software-factory-artifacts/pulsebudget/design/logo_primary_lockup.svg",
+        "s3://software-factory-artifacts/pulsebudget/design/logo_mark.svg"
+      ],
+      "approved_colors": [
+        "#0B1F3A",
+        "#2D6CDF",
+        "#E8EEF8",
+        "#2E7D32",
+        "#C62828"
+      ],
+      "approved_fonts": [
+        "Manrope",
+        "IBM Plex Sans"
+      ]
+    }
+  },
+  "handoff": {
+    "next_stage": "design_brief",
+    "next_agent": "design_brief_agent",
+    "payload": {
+      "brand_ready": true
+    }
+  }
+}

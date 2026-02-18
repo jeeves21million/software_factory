@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "summary": "Generated draft foundation, but blocked on trademark conflict checks for proposed naming cues.",
+  "artifacts": [],
+  "payload": {
+    "brand_foundation": {
+      "positioning": "Draft positioning requires legal review.",
+      "voice_tone": [
+        "clear"
+      ],
+      "visual_direction": [
+        "minimal"
+      ]
+    },
+    "brand_pack": {
+      "brand_guidelines": [
+        "s3://software-factory-artifacts/pulsebudget/design/brand_guidelines_draft.pdf"
+      ],
+      "logos": [
+        "s3://software-factory-artifacts/pulsebudget/design/logo_draft.svg"
+      ]
+    }
+  },
+  "handoff": {
+    "next_stage": "design_brief",
+    "next_agent": "design_brief_agent",
+    "payload": {
+      "legal_review_required": true
+    }
+  },
+  "failure": {
+    "category": "policy",
+    "message": "Potential trademark conflicts detected in generated naming direction.",
+    "retryable": false,
+    "details": {
+      "owner": "legal"
+    }
+  }
+}

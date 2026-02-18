@@ -41,3 +41,10 @@ Supported paths:
 - Without research: `intake -> design_brief -> design`
 
 If a human (or another agent) provides complete design-brief inputs manually, the workflow can skip `ui_research_agent` and go directly to `design_brief_agent`.
+
+## OpenClaw Integration
+
+OpenClaw manifest and worker specs live in:
+- `openclaw/design_run.schema.json`
+- `openclaw/design_run.example.yaml`
+- `openclaw/worker_entrypoint_contract.md`

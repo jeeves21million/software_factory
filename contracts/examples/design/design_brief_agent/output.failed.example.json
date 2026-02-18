@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "summary": "Brief generation blocked by contradictory stakeholder constraints.",
+  "artifacts": [],
+  "payload": {
+    "design_brief": [
+      "Constraints conflict: minimalist dashboard request conflicts with requirement to show full account tables by default."
+    ],
+    "inspirations": [
+      {
+        "type": "comment",
+        "comment": "Awaiting stakeholder decision on dashboard density."
+      }
+    ]
+  },
+  "handoff": {
+    "next_stage": "design",
+    "next_agent": "ui_design_agent",
+    "payload": {
+      "design_brief": [
+        "Hold until constraints are resolved."
+      ],
+      "inspirations": [
+        {
+          "type": "comment",
+          "comment": "Do not proceed to high-fidelity comps yet."
+        }
+      ]
+    }
+  },
+  "failure": {
+    "category": "validation_failed",
+    "message": "Input constraints are mutually incompatible for current scope.",
+    "retryable": false,
+    "details": {
+      "blocked_by": "product_owner"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "status": "failed",
+  "summary": "Design package partially generated but blocked by unresolved accessibility contrast issues.",
+  "artifacts": [],
+  "payload": {
+    "comp_set_uri": "figma://file/pulsebudget-v1/screens-draft",
+    "token_set_uri": "s3://software-factory-artifacts/pulsebudget/design/tokens_draft.json",
+    "component_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/component_specs_draft.md",
+    "screen_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/screen_specs_draft.md"
+  },
+  "handoff": {
+    "next_stage": "implementation",
+    "next_agent": "frontend_dev_agent",
+    "payload": {
+      "ready_for_build": false
+    }
+  },
+  "failure": {
+    "category": "validation_failed",
+    "message": "Primary action color combinations do not meet WCAG contrast target.",
+    "retryable": true,
+    "details": {
+      "target": "wcag_2_2_aa"
+    }
+  }
+}

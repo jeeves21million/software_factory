@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "summary": "Research halted due third-party rate limiting on source scraping connectors.",
+  "artifacts": [],
+  "payload": {
+    "similar_products": [],
+    "common_flows": [],
+    "inspirations": []
+  },
+  "handoff": {
+    "next_stage": "design_brief",
+    "next_agent": "design_brief_agent",
+    "payload": {}
+  },
+  "failure": {
+    "category": "infra",
+    "message": "429 responses from multiple source connectors; retry after cooldown window.",
+    "retryable": true,
+    "details": {
+      "cooldown_minutes": 20
+    }
+  }
+}

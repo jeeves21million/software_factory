@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "summary": "Unable to finalize interaction spec due unresolved state-transition requirements.",
+  "artifacts": [],
+  "handoff": {
+    "next_stage": "design",
+    "next_agent": "design_brief_agent",
+    "payload": {
+      "request": "clarify_error_recovery_expectations"
+    }
+  },
+  "failure": {
+    "category": "contract_mismatch",
+    "message": "Input payload missing required behavior for offline and reconnect scenarios.",
+    "retryable": true,
+    "details": {
+      "missing": [
+        "offline_state",
+        "retry_behavior"
+      ]
+    }
+  }
+}

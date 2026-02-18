@@ -1,0 +1,55 @@
+{
+  "job": {
+    "job_id": "job_20260218_norm_002",
+    "stage": "design_brand",
+    "agent": "design_intake_normalizer_agent",
+    "contract_version": "v1.2.0",
+    "created_at": "2026-02-18T20:16:00Z",
+    "attempt": 1,
+    "retry_count": 0,
+    "acceptance_criteria": [
+      "Normalize founder docs and route to brand generation when assets are missing"
+    ],
+    "input": {
+      "source_files": [
+        "human_inputs/startup_without_brand_assets/01_founder_notes.md",
+        "human_inputs/startup_without_brand_assets/02_inspirations.md",
+        "human_inputs/startup_without_brand_assets/03_scope.txt"
+      ]
+    }
+  },
+  "normalized_for": "brand_foundation_agent",
+  "payload": {
+    "project_summary": "PulseBudget helps couples align on spending with collaborative weekly check-ins.",
+    "target_audience": [
+      "Couples age 25-40",
+      "First-time budgeters",
+      "Users anxious about finance tools"
+    ],
+    "platform": "web",
+    "inspirations": [
+      {
+        "type": "link",
+        "value": "https://www.notion.so",
+        "comment": "Clean typography and hierarchy."
+      },
+      {
+        "type": "link",
+        "value": "https://www.ynab.com",
+        "comment": "Strong educational onboarding flow."
+      },
+      {
+        "type": "comment",
+        "comment": "Avoid aggressive red-heavy alerts and scary tone."
+      }
+    ],
+    "competitor_refs": [
+      "https://www.ynab.com"
+    ]
+  },
+  "routing_hint": {
+    "next_stage": "design_brand",
+    "next_agent": "brand_foundation_agent",
+    "reason": "No client brand assets provided"
+  }
+}

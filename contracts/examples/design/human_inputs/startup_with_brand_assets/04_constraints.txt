@@ -1,0 +1,6 @@
+Accessibility target: WCAG 2.2 AA
+Technical constraints:
+- Use Tailwind token system
+- Support breakpoints at 360, 768, 1280
+Legal note:
+- Include disclaimer language for forecast values ("Estimates only")
