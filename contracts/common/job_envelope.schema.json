@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/common/job_envelope.schema.json",
+  "title": "Job Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "job_id",
+    "stage",
+    "agent",
+    "contract_version",
+    "created_at",
+    "input",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "job_id": { "type": "string", "minLength": 1 },
+    "stage": { "type": "string", "minLength": 1 },
+    "agent": { "type": "string", "minLength": 1 },
+    "contract_version": { "type": "string", "pattern": "^v[0-9]+(\\.[0-9]+)*$" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "attempt": { "type": "integer", "minimum": 1, "default": 1 },
+    "retry_count": { "type": "integer", "minimum": 0, "default": 0 },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "input": { "type": "object" },
+    "context": { "type": "object" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "./artifact_metadata.schema.json" }
+    }
+  }
+}

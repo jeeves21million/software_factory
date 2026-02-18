@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/solution_arch_agent.input.schema.json",
+  "title": "solution_arch_agent Input",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": {
+      "$ref": "../common/job_envelope.schema.json"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

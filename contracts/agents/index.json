@@ -1,0 +1,65 @@
+{
+  "contract_version": "v1.0.0",
+  "agents": {
+    "intake_agent": {
+      "input_schema": "./intake_agent.input.schema.json",
+      "output_schema": "./intake_agent.output.schema.json"
+    },
+    "solution_arch_agent": {
+      "input_schema": "./solution_arch_agent.input.schema.json",
+      "output_schema": "./solution_arch_agent.output.schema.json"
+    },
+    "ui_ux_spec_agent": {
+      "input_schema": "./ui_ux_spec_agent.input.schema.json",
+      "output_schema": "./ui_ux_spec_agent.output.schema.json"
+    },
+    "api_contract_agent": {
+      "input_schema": "./api_contract_agent.input.schema.json",
+      "output_schema": "./api_contract_agent.output.schema.json"
+    },
+    "frontend_dev_agent": {
+      "input_schema": "./frontend_dev_agent.input.schema.json",
+      "output_schema": "./frontend_dev_agent.output.schema.json"
+    },
+    "backend_dev_agent": {
+      "input_schema": "./backend_dev_agent.input.schema.json",
+      "output_schema": "./backend_dev_agent.output.schema.json"
+    },
+    "db_schema_agent": {
+      "input_schema": "./db_schema_agent.input.schema.json",
+      "output_schema": "./db_schema_agent.output.schema.json"
+    },
+    "test_planner_agent": {
+      "input_schema": "./test_planner_agent.input.schema.json",
+      "output_schema": "./test_planner_agent.output.schema.json"
+    },
+    "unit_test_agent": {
+      "input_schema": "./unit_test_agent.input.schema.json",
+      "output_schema": "./unit_test_agent.output.schema.json"
+    },
+    "integration_test_agent": {
+      "input_schema": "./integration_test_agent.input.schema.json",
+      "output_schema": "./integration_test_agent.output.schema.json"
+    },
+    "e2e_test_agent": {
+      "input_schema": "./e2e_test_agent.input.schema.json",
+      "output_schema": "./e2e_test_agent.output.schema.json"
+    },
+    "qa_gate_agent": {
+      "input_schema": "./qa_gate_agent.input.schema.json",
+      "output_schema": "./qa_gate_agent.output.schema.json"
+    },
+    "bugfix_agent": {
+      "input_schema": "./bugfix_agent.input.schema.json",
+      "output_schema": "./bugfix_agent.output.schema.json"
+    },
+    "release_agent": {
+      "input_schema": "./release_agent.input.schema.json",
+      "output_schema": "./release_agent.output.schema.json"
+    },
+    "post_deploy_verify_agent": {
+      "input_schema": "./post_deploy_verify_agent.input.schema.json",
+      "output_schema": "./post_deploy_verify_agent.output.schema.json"
+    }
+  }
+}

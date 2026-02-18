@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/qa_gate_agent.input.schema.json",
+  "title": "qa_gate_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": {
+      "$ref": "../common/job_envelope.schema.json"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test_reports", "policy_report", "defect_summary", "release_candidate"],
+      "properties": {
+        "test_reports": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["unit", "integration", "e2e"],
+          "properties": {
+            "unit": { "$ref": "#/$defs/testReport" },
+            "integration": { "$ref": "#/$defs/testReport" },
+            "e2e": { "$ref": "#/$defs/testReport" }
+          }
+        },
+        "policy_report": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["blocking_violations", "warnings"],
+          "properties": {
+            "blocking_violations": { "type": "integer", "minimum": 0 },
+            "warnings": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "defect_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["p0", "p1"],
+          "properties": {
+            "p0": { "type": "integer", "minimum": 0 },
+            "p1": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "release_candidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["version", "commit_sha"],
+          "properties": {
+            "version": { "type": "string", "minLength": 1 },
+            "commit_sha": { "type": "string", "minLength": 7 }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "testReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "failed", "skipped"],
+      "properties": {
+        "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

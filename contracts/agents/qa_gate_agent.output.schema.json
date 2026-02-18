@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/qa_gate_agent.output.schema.json",
+  "title": "qa_gate_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "../common/artifact_metadata.schema.json"
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_decision", "blocking_issues", "required_actions"],
+      "properties": {
+        "gate_decision": {
+          "type": "string",
+          "enum": ["pass", "fail"]
+        },
+        "blocking_issues": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "required_actions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "scorecard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "test_health": { "type": "number", "minimum": 0, "maximum": 1 },
+            "policy_health": { "type": "number", "minimum": 0, "maximum": 1 },
+            "defect_health": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string" },
+        "next_agent": { "type": "string" },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": {
+      "$ref": "../common/failure.schema.json"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": { "const": "failed" }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["failure"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "gate_decision": { "const": "pass" }
+            },
+            "required": ["gate_decision"]
+          }
+        },
+        "required": ["payload"]
+      },
+      "then": {
+        "properties": {
+          "handoff": {
+            "properties": {
+              "next_stage": { "const": "release" },
+              "next_agent": { "const": "release_agent" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "gate_decision": { "const": "fail" }
+            },
+            "required": ["gate_decision"]
+          }
+        },
+        "required": ["payload"]
+      },
+      "then": {
+        "properties": {
+          "handoff": {
+            "properties": {
+              "next_stage": { "const": "fix_loop" },
+              "next_agent": { "const": "bugfix_agent" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

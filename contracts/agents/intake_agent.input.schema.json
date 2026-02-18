@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/intake_agent.input.schema.json",
+  "title": "intake_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": {
+      "$ref": "../common/job_envelope.schema.json"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["idea", "business_goals", "constraints"],
+      "properties": {
+        "idea": { "type": "string", "minLength": 1 },
+        "business_goals": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["timeline", "budget", "preferred_stack"],
+          "properties": {
+            "timeline": { "type": "string", "minLength": 1 },
+            "budget": { "type": "string", "minLength": 1 },
+            "preferred_stack": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "compliance": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "target_users": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "non_goals": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

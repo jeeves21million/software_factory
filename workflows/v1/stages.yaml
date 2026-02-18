@@ -1,0 +1,18 @@
+version: v1.0.0
+stages:
+  - name: intake
+    agents: [intake_agent]
+  - name: architecture
+    agents: [solution_arch_agent, ui_ux_spec_agent, api_contract_agent]
+  - name: implementation
+    agents: [frontend_dev_agent, backend_dev_agent, db_schema_agent]
+  - name: testing
+    agents: [test_planner_agent, unit_test_agent, integration_test_agent, e2e_test_agent]
+  - name: validation
+    agents: [qa_gate_agent]
+  - name: fix_loop
+    agents: [bugfix_agent]
+  - name: release
+    agents: [release_agent]
+  - name: post_release_validation
+    agents: [post_deploy_verify_agent]

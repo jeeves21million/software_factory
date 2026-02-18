@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/common/failure.schema.json",
+  "title": "Failure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["category", "message", "retryable"],
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "infra",
+        "compile",
+        "test_regression",
+        "contract_mismatch",
+        "validation_failed",
+        "policy",
+        "unknown"
+      ]
+    },
+    "message": { "type": "string", "minLength": 1 },
+    "retryable": { "type": "boolean" },
+    "details": { "type": "object" }
+  }
+}

@@ -1,0 +1,28 @@
+version: v1.0.0
+gates:
+  architecture_complete:
+    required_artifacts:
+      - architecture_spec
+      - ui_ux_spec
+      - api_contract
+  implementation_complete:
+    required_artifacts:
+      - frontend_changeset
+      - backend_changeset
+      - db_schema_plan
+  testing_complete:
+    required_artifacts:
+      - test_plan
+      - unit_test_report
+      - integration_test_report
+      - e2e_test_report
+  qa_release_gate:
+    required_conditions:
+      - all_required_tests_passed
+      - no_blocking_policy_violations
+      - no_open_p0_or_p1_defects
+  post_release_gate:
+    required_conditions:
+      - smoke_checks_passed
+      - health_checks_passed
+      - error_budget_not_burned

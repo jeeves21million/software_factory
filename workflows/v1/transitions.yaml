@@ -1,0 +1,27 @@
+version: v1.0.0
+initial_stage: intake
+terminal_stages: [post_release_validation]
+allowed_transitions:
+  intake:
+    - architecture
+  architecture:
+    - implementation
+  implementation:
+    - testing
+  testing:
+    - validation
+  validation:
+    - release
+    - fix_loop
+  fix_loop:
+    - testing
+  release:
+    - post_release_validation
+  post_release_validation: []
+routing:
+  validation_fail:
+    next_stage: fix_loop
+    next_agent: bugfix_agent
+  validation_pass:
+    next_stage: release
+    next_agent: release_agent

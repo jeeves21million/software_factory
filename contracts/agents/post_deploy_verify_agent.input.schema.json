@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/post_deploy_verify_agent.input.schema.json",
+  "title": "post_deploy_verify_agent Input",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": {
+      "$ref": "../common/job_envelope.schema.json"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/release_agent.output.schema.json",
+  "title": "release_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "handoff"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "../common/artifact_metadata.schema.json"
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "minLength": 1 },
+        "next_agent": { "type": "string", "minLength": 1 },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": {
+      "$ref": "../common/failure.schema.json"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "failed" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["failure"]
+      }
+    }
+  ]
+}
