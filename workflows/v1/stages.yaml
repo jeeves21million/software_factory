@@ -1,9 +1,15 @@
-version: v1.0.0
+version: v1.1.0
 stages:
   - name: intake
     agents: [intake_agent]
+  - name: design_research
+    agents: [ui_research_agent]
+  - name: design_brief
+    agents: [design_brief_agent]
+  - name: design
+    agents: [ui_design_agent, ui_ux_spec_agent]
   - name: architecture
-    agents: [solution_arch_agent, ui_ux_spec_agent, api_contract_agent]
+    agents: [solution_arch_agent, api_contract_agent]
   - name: implementation
     agents: [frontend_dev_agent, backend_dev_agent, db_schema_agent]
   - name: testing

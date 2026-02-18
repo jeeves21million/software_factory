@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/ui_research_agent.input.schema.json",
+  "title": "ui_research_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": { "$ref": "../common/job_envelope.schema.json" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_idea", "target_audience", "platform"],
+      "properties": {
+        "product_idea": { "type": "string", "minLength": 1 },
+        "target_audience": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["web", "native_mobile"]
+        },
+        "seed_inspirations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "comment"],
+            "properties": {
+              "type": { "type": "string", "enum": ["link", "image", "comment"] },
+              "value": { "type": "string" },
+              "comment": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

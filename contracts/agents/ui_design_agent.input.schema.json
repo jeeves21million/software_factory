@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/ui_design_agent.input.schema.json",
+  "title": "ui_design_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": { "$ref": "../common/job_envelope.schema.json" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["design_brief", "inspirations", "brand_pack", "required_screens"],
+      "properties": {
+        "design_brief": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "inspirations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "comment"],
+            "properties": {
+              "type": { "type": "string", "enum": ["link", "image", "comment"] },
+              "value": { "type": "string" },
+              "comment": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "brand_pack": { "type": "object" },
+        "required_screens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "accessibility_target": { "type": "string" }
+      }
+    }
+  }
+}

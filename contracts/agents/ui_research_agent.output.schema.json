@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/ui_research_agent.output.schema.json",
+  "title": "ui_research_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["similar_products", "common_flows", "inspirations"],
+      "properties": {
+        "similar_products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "link", "note"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "link": { "type": "string", "minLength": 1 },
+              "note": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "common_flows": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "inspirations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "comment"],
+            "properties": {
+              "type": { "type": "string", "enum": ["link", "image", "comment"] },
+              "value": { "type": "string" },
+              "comment": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "const": "design_brief" },
+        "next_agent": { "type": "string", "const": "design_brief_agent" },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "failed" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["failure"]
+      }
+    }
+  ]
+}

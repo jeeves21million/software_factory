@@ -60,6 +60,18 @@
     "post_deploy_verify_agent": {
       "input_schema": "./post_deploy_verify_agent.input.schema.json",
       "output_schema": "./post_deploy_verify_agent.output.schema.json"
+    },
+    "design_brief_agent": {
+      "input_schema": "./design_brief_agent.input.schema.json",
+      "output_schema": "./design_brief_agent.output.schema.json"
+    },
+    "ui_research_agent": {
+      "input_schema": "./ui_research_agent.input.schema.json",
+      "output_schema": "./ui_research_agent.output.schema.json"
+    },
+    "ui_design_agent": {
+      "input_schema": "./ui_design_agent.input.schema.json",
+      "output_schema": "./ui_design_agent.output.schema.json"
     }
   }
 }

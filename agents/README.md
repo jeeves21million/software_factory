@@ -4,6 +4,9 @@ This directory contains v1 agents for full-lifecycle software delivery.
 
 ## Agents
 - intake_agent
+- ui_research_agent
+- design_brief_agent
+- ui_design_agent
 - solution_arch_agent
 - ui_ux_spec_agent
 - api_contract_agent

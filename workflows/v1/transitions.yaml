@@ -1,8 +1,16 @@
-version: v1.0.0
+version: v1.1.0
 initial_stage: intake
 terminal_stages: [post_release_validation]
 allowed_transitions:
   intake:
+    - design_research
+    - design_brief
+    - architecture
+  design_research:
+    - design_brief
+  design_brief:
+    - design
+  design:
     - architecture
   architecture:
     - implementation
@@ -19,6 +27,15 @@ allowed_transitions:
     - post_release_validation
   post_release_validation: []
 routing:
+  startup_default:
+    next_stage: design_research
+    next_agent: ui_research_agent
+  startup_skip_research:
+    next_stage: design_brief
+    next_agent: design_brief_agent
+  enterprise_existing_design_system:
+    next_stage: architecture
+    next_agent: solution_arch_agent
   validation_fail:
     next_stage: fix_loop
     next_agent: bugfix_agent

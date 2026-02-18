@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/ui_design_agent.output.schema.json",
+  "title": "ui_design_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["comp_set_uri", "token_set_uri", "component_spec_uri", "screen_spec_uri"],
+      "properties": {
+        "comp_set_uri": { "type": "string", "minLength": 1 },
+        "token_set_uri": { "type": "string", "minLength": 1 },
+        "component_spec_uri": { "type": "string", "minLength": 1 },
+        "screen_spec_uri": { "type": "string", "minLength": 1 }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "const": "implementation" },
+        "next_agent": { "type": "string", "const": "frontend_dev_agent" },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "failed" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["failure"]
+      }
+    }
+  ]
+}
