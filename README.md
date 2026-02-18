@@ -31,3 +31,13 @@ This repository contains reusable agent definitions and supporting assets for a 
 ### `versions/`
 - Compatibility and release metadata.
 - `compatibility.yaml` maps `agent-pack version` to supported `orchestrator/core versions` and contract versions.
+
+## Design Flow Notes
+
+`ui_research_agent` is optional.
+
+Supported paths:
+- With research: `intake -> design_research -> design_brief -> design`
+- Without research: `intake -> design_brief -> design`
+
+If a human (or another agent) provides complete design-brief inputs manually, the workflow can skip `ui_research_agent` and go directly to `design_brief_agent`.
