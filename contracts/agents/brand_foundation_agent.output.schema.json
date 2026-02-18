@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/brand_foundation_agent.output.schema.json",
+  "title": "brand_foundation_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["brand_foundation", "brand_pack"],
+      "properties": {
+        "brand_foundation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["positioning", "voice_tone", "visual_direction"],
+          "properties": {
+            "positioning": { "type": "string", "minLength": 1 },
+            "voice_tone": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "visual_direction": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "brand_pack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["brand_guidelines", "logos"],
+          "properties": {
+            "brand_guidelines": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "logos": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "approved_colors": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" }
+            },
+            "approved_fonts": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "const": "design_brief" },
+        "next_agent": { "type": "string", "const": "design_brief_agent" },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "failed" } },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["failure"]
+      }
+    }
+  ]
+}

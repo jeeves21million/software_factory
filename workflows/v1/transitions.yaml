@@ -1,12 +1,16 @@
-version: v1.1.0
+version: v1.2.0
 initial_stage: intake
 terminal_stages: [post_release_validation]
 allowed_transitions:
   intake:
     - design_research
+    - design_brand
     - design_brief
     - architecture
   design_research:
+    - design_brand
+    - design_brief
+  design_brand:
     - design_brief
   design_brief:
     - design
@@ -30,6 +34,9 @@ routing:
   startup_default:
     next_stage: design_research
     next_agent: ui_research_agent
+  startup_no_brand_assets:
+    next_stage: design_brand
+    next_agent: brand_foundation_agent
   startup_skip_research:
     next_stage: design_brief
     next_agent: design_brief_agent

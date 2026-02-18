@@ -1,9 +1,11 @@
-version: v1.1.0
+version: v1.2.0
 stages:
   - name: intake
     agents: [intake_agent]
   - name: design_research
     agents: [ui_research_agent]
+  - name: design_brand
+    agents: [brand_foundation_agent]
   - name: design_brief
     agents: [design_brief_agent]
   - name: design

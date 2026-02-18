@@ -72,6 +72,10 @@
     "ui_design_agent": {
       "input_schema": "./ui_design_agent.input.schema.json",
       "output_schema": "./ui_design_agent.output.schema.json"
+    },
+    "brand_foundation_agent": {
+      "input_schema": "./brand_foundation_agent.input.schema.json",
+      "output_schema": "./brand_foundation_agent.output.schema.json"
     }
   }
 }

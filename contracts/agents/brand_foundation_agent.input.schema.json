@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://software-factory-agents/contracts/agents/ui_design_agent.input.schema.json",
-  "title": "ui_design_agent Input",
+  "$id": "https://software-factory-agents/contracts/agents/brand_foundation_agent.input.schema.json",
+  "title": "brand_foundation_agent Input",
   "type": "object",
   "additionalProperties": false,
   "required": ["job", "payload"],
@@ -10,13 +10,15 @@
     "payload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["design_brief", "inspirations", "required_screens"],
+      "required": ["project_summary", "target_audience", "platform"],
       "properties": {
-        "design_brief": {
+        "project_summary": { "type": "string", "minLength": 1 },
+        "target_audience": {
           "type": "array",
           "minItems": 1,
           "items": { "type": "string", "minLength": 1 }
         },
+        "platform": { "type": "string", "enum": ["web", "native_mobile"] },
         "inspirations": {
           "type": "array",
           "items": {
@@ -30,19 +32,11 @@
             }
           }
         },
-        "brand_pack": { "type": "object" },
-        "brand_foundation": { "type": "object" },
-        "required_screens": {
+        "competitor_refs": {
           "type": "array",
-          "minItems": 1,
           "items": { "type": "string", "minLength": 1 }
-        },
-        "accessibility_target": { "type": "string" }
-      },
-      "anyOf": [
-        { "required": ["brand_pack"] },
-        { "required": ["brand_foundation"] }
-      ]
+        }
+      }
     }
   }
 }
