@@ -15,18 +15,28 @@
     "payload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["similar_products", "common_flows", "inspirations"],
+      "required": [
+        "similar_products",
+        "common_flows",
+        "inspirations",
+        "differentiation_thesis",
+        "creative_opportunity_map",
+        "anti_patterns",
+        "signature_interaction_candidates"
+      ],
       "properties": {
         "similar_products": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["name", "link", "note"],
+            "required": ["name", "link", "note", "what_to_adapt", "what_to_avoid"],
             "properties": {
               "name": { "type": "string", "minLength": 1 },
               "link": { "type": "string", "minLength": 1 },
-              "note": { "type": "string", "minLength": 1 }
+              "note": { "type": "string", "minLength": 1 },
+              "what_to_adapt": { "type": "string", "minLength": 1 },
+              "what_to_avoid": { "type": "string", "minLength": 1 }
             }
           }
         },
@@ -44,6 +54,44 @@
               "type": { "type": "string", "enum": ["link", "image", "comment"] },
               "value": { "type": "string" },
               "comment": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "differentiation_thesis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "creative_opportunity_map": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["opportunity", "why_now", "execution_signal", "risk"],
+            "properties": {
+              "opportunity": { "type": "string", "minLength": 1 },
+              "why_now": { "type": "string", "minLength": 1 },
+              "execution_signal": { "type": "string", "minLength": 1 },
+              "risk": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "anti_patterns": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "signature_interaction_candidates": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "description", "applicability"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "description": { "type": "string", "minLength": 1 },
+              "applicability": { "type": "string", "minLength": 1 }
             }
           }
         }

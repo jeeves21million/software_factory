@@ -16,10 +16,40 @@
     }
   },
   "payload": {
-    "design_brief": [
-      "Dashboard should foreground cash position and goals progress.",
-      "Weekly summary should be scan-friendly in under 10 seconds."
-    ],
+    "design_brief": {
+      "overview": "Design a premium personal-finance SaaS interface with high trust and strong at-a-glance decision support.",
+      "design_direction": [
+        "Calm confidence",
+        "Dense but scannable information hierarchy",
+        "Crisp, intentional motion and state transitions"
+      ],
+      "required_screens": [
+        {
+          "id": "dashboard",
+          "name": "Dashboard",
+          "purpose": "Primary financial overview",
+          "priority": "critical"
+        },
+        {
+          "id": "transactions",
+          "name": "Transactions",
+          "purpose": "Daily money movement review",
+          "priority": "high"
+        },
+        {
+          "id": "goals",
+          "name": "Goals",
+          "purpose": "Track financial goals and milestones",
+          "priority": "high"
+        },
+        {
+          "id": "weekly-summary",
+          "name": "Weekly Summary",
+          "purpose": "Fast weekly financial signal recap",
+          "priority": "high"
+        }
+      ]
+    },
     "inspirations": [
       {
         "type": "link",
@@ -75,6 +105,9 @@
       "require_distinct_mobile_layouts": true,
       "forbid_placeholder_copy": true,
       "forbid_desktop_label_in_mobile": true,
+      "require_key_screen_options": true,
+      "min_visual_options_per_key_screen": 2,
+      "require_differentiation_from_competitors": true,
       "require_interaction_states": [
         "loading",
         "empty",

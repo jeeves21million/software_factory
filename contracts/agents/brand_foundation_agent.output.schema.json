@@ -20,7 +20,15 @@
         "brand_foundation": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["positioning", "voice_tone", "visual_direction"],
+          "required": [
+            "positioning",
+            "voice_tone",
+            "visual_direction",
+            "creative_thesis",
+            "visual_territories",
+            "anti_patterns",
+            "token_system"
+          ],
           "properties": {
             "positioning": { "type": "string", "minLength": 1 },
             "voice_tone": {
@@ -32,13 +40,72 @@
               "type": "array",
               "minItems": 1,
               "items": { "type": "string", "minLength": 1 }
+            },
+            "creative_thesis": {
+              "type": "string",
+              "minLength": 1
+            },
+            "visual_territories": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "rationale", "signals"],
+                "properties": {
+                  "name": { "type": "string", "minLength": 1 },
+                  "rationale": { "type": "string", "minLength": 1 },
+                  "signals": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": { "type": "string", "minLength": 1 }
+                  }
+                }
+              }
+            },
+            "anti_patterns": {
+              "type": "array",
+              "minItems": 3,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "token_system": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["color_roles", "typography_scale", "spacing_scale", "radius_scale", "motion_primitives"],
+              "properties": {
+                "color_roles": {
+                  "type": "array",
+                  "minItems": 5,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "typography_scale": {
+                  "type": "array",
+                  "minItems": 5,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "spacing_scale": {
+                  "type": "array",
+                  "minItems": 5,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "radius_scale": {
+                  "type": "array",
+                  "minItems": 3,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "motion_primitives": {
+                  "type": "array",
+                  "minItems": 3,
+                  "items": { "type": "string", "minLength": 1 }
+                }
+              }
             }
           }
         },
         "brand_pack": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["brand_guidelines", "logos"],
+          "required": ["brand_guidelines", "logos", "approved_colors", "approved_fonts"],
           "properties": {
             "brand_guidelines": {
               "type": "array",

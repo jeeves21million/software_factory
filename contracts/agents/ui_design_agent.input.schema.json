@@ -13,9 +13,36 @@
       "required": ["design_brief", "inspirations", "required_screens", "output_spec", "quality_gate"],
       "properties": {
         "design_brief": {
-          "type": "array",
-          "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["overview", "design_direction", "required_screens"],
+          "properties": {
+            "overview": { "type": "string", "minLength": 1 },
+            "design_direction": {
+              "type": "array",
+              "minItems": 3,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "required_screens": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "name", "purpose", "priority"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "name": { "type": "string", "minLength": 1 },
+                  "purpose": { "type": "string", "minLength": 1 },
+                  "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] }
+                }
+              }
+            }
+          }
         },
         "inspirations": {
           "type": "array",
@@ -35,7 +62,11 @@
         "required_screens": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
         },
         "accessibility_target": { "type": "string" },
         "output_spec": {
@@ -66,7 +97,10 @@
             "require_distinct_mobile_layouts",
             "forbid_placeholder_copy",
             "forbid_desktop_label_in_mobile",
-            "require_interaction_states"
+            "require_interaction_states",
+            "require_key_screen_options",
+            "min_visual_options_per_key_screen",
+            "require_differentiation_from_competitors"
           ],
           "properties": {
             "tier": { "type": "string", "enum": ["premium"] },
@@ -82,8 +116,19 @@
                 { "contains": { "const": "error" } },
                 { "contains": { "const": "success" } }
               ]
+            },
+            "require_key_screen_options": { "type": "boolean", "const": true },
+            "min_visual_options_per_key_screen": { "type": "integer", "minimum": 2 },
+            "require_differentiation_from_competitors": { "type": "boolean", "const": true }
+          },
+          "allOf": [
+            {
+              "properties": {
+                "min_visual_options_per_key_screen": { "minimum": 2 }
+              },
+              "required": ["min_visual_options_per_key_screen"]
             }
-          }
+          ]
         }
       },
       "anyOf": [

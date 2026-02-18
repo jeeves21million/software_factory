@@ -16,6 +16,8 @@ Design research
 - Research pack with similar products and flow patterns
 - Structured inspiration candidates in the standard inspirations format
 - Risk notes (copycat, licensing, brand conflict)
+- Differentiation thesis (what to emulate vs what to reject)
+- Creative opportunity map and signature interaction candidates
 
 ## Sub-Agents
 - None in v1 (expand as needed).
@@ -25,6 +27,8 @@ Design research
 - Prefer credible sources (official product sites/docs) over random galleries.
 - Emit inspirations in the shared simple format: type, value, comment.
 - Flag legal/IP risk when visual similarity is high.
+- Explicitly document anti-patterns to avoid "template SaaS" results.
+- Define at least two signature interaction ideas tailored to the product.
 
 ## Done Criteria
 Research output is actionable for design_brief_agent and reduces ambiguity for first-pass UI direction.

@@ -15,10 +15,34 @@
     }
   },
   "payload": {
-    "design_brief": [
-      "Use startup brand foundation to drive palette and tone.",
-      "Prioritize mobile-first dashboard layout."
-    ],
+    "design_brief": {
+      "overview": "Create a premium mobile-first money experience with strong trust and emotional clarity.",
+      "design_direction": [
+        "Sophisticated minimalism",
+        "Editorial typography rhythm",
+        "Data-first storytelling"
+      ],
+      "required_screens": [
+        {
+          "id": "onboarding",
+          "name": "Onboarding",
+          "purpose": "Capture profile and preferences",
+          "priority": "critical"
+        },
+        {
+          "id": "dashboard",
+          "name": "Dashboard",
+          "purpose": "Daily financial command center",
+          "priority": "critical"
+        },
+        {
+          "id": "goals",
+          "name": "Goals",
+          "purpose": "Goal planning and progress",
+          "priority": "high"
+        }
+      ]
+    },
     "inspirations": [
       {
         "type": "comment",
@@ -57,6 +81,9 @@
       "require_distinct_mobile_layouts": true,
       "forbid_placeholder_copy": true,
       "forbid_desktop_label_in_mobile": true,
+      "require_key_screen_options": true,
+      "min_visual_options_per_key_screen": 2,
+      "require_differentiation_from_competitors": true,
       "require_interaction_states": [
         "loading",
         "empty",

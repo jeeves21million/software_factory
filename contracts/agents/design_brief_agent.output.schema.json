@@ -32,15 +32,106 @@
       "additionalProperties": false,
       "required": [
         "design_brief",
-        "inspirations"
+        "inspirations",
+        "quality_targets"
       ],
       "properties": {
         "design_brief": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string",
-            "minLength": 1
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "overview",
+            "design_direction",
+            "content_strategy",
+            "interaction_principles",
+            "required_screens"
+          ],
+          "properties": {
+            "overview": {
+              "type": "string",
+              "minLength": 1
+            },
+            "design_direction": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "content_strategy": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "interaction_principles": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required_screens": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "name",
+                  "purpose",
+                  "priority",
+                  "platforms",
+                  "key_states"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": ["critical", "high", "medium", "low"]
+                  },
+                  "platforms": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string",
+                      "enum": ["desktop", "mobile"]
+                    },
+                    "allOf": [
+                      { "contains": { "const": "desktop" } },
+                      { "contains": { "const": "mobile" } }
+                    ]
+                  },
+                  "key_states": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": ["default", "loading", "empty", "error", "success"]
+                    },
+                    "allOf": [
+                      { "contains": { "const": "default" } }
+                    ]
+                  }
+                }
+              }
+            }
           }
         },
         "inspirations": {
@@ -70,6 +161,33 @@
               }
             }
           }
+        },
+        "quality_targets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "quality_tier",
+            "target_emotional_response",
+            "differentiation_statement"
+          ],
+          "properties": {
+            "quality_tier": {
+              "type": "string",
+              "const": "premium"
+            },
+            "target_emotional_response": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "differentiation_statement": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
@@ -94,43 +212,18 @@
           "type": "object",
           "required": [
             "design_brief",
-            "inspirations"
+            "inspirations",
+            "quality_targets"
           ],
           "properties": {
             "design_brief": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "minLength": 1
-              }
+              "$ref": "#/properties/payload/properties/design_brief"
             },
             "inspirations": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": [
-                  "type",
-                  "comment"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "link",
-                      "image",
-                      "comment"
-                    ]
-                  },
-                  "value": {
-                    "type": "string"
-                  },
-                  "comment": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
+              "$ref": "#/properties/payload/properties/inspirations"
+            },
+            "quality_targets": {
+              "$ref": "#/properties/payload/properties/quality_targets"
             }
           }
         }

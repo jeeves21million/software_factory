@@ -20,7 +20,73 @@
     "screen_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/screen_specs_v1.md",
     "comp_manifest_uri": "s3://software-factory-artifacts/pulsebudget/design/comps/manifest.json",
     "quality_report_uri": "s3://software-factory-artifacts/pulsebudget/design/comps/quality_report.json",
-    "quality_status": "pass"
+    "quality_status": "pass",
+    "coverage_report": {
+      "required_screen_ids": [
+        "dashboard",
+        "transactions",
+        "goals",
+        "weekly-summary"
+      ],
+      "generated_screen_ids": [
+        "dashboard",
+        "transactions",
+        "goals",
+        "weekly-summary"
+      ],
+      "missing_screen_ids": [],
+      "extra_screen_ids": [],
+      "variants": [
+        "desktop",
+        "mobile"
+      ],
+      "complete": true
+    },
+    "generated_files": [
+      {
+        "screen_id": "dashboard",
+        "variant": "desktop",
+        "path": "comps/desktop/dashboard.html",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      {
+        "screen_id": "dashboard",
+        "variant": "mobile",
+        "path": "comps/mobile/dashboard.html",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    ],
+    "quality_metrics": {
+      "quality_tier": "premium",
+      "has_visual_direction_statement": true,
+      "mobile_layouts_distinct": true,
+      "desktop_label_in_mobile_count": 0,
+      "placeholder_copy_count": 0,
+      "brand_token_usage_pass": true,
+      "interaction_states_coverage": [
+        "loading",
+        "empty",
+        "error",
+        "success"
+      ],
+      "accessibility_assertions_pass": true
+    },
+    "key_screen_options": [
+      {
+        "screen_id": "dashboard",
+        "option_id": "option-1",
+        "desktop_path": "comps/desktop/dashboard--option-1.html",
+        "mobile_path": "comps/mobile/dashboard--option-1.html",
+        "rationale": "Strong KPI hierarchy with editorial rhythm."
+      },
+      {
+        "screen_id": "dashboard",
+        "option_id": "option-2",
+        "desktop_path": "comps/desktop/dashboard--option-2.html",
+        "mobile_path": "comps/mobile/dashboard--option-2.html",
+        "rationale": "Narrative-first layout emphasizing trends and actions."
+      }
+    ]
   },
   "handoff": {
     "next_stage": "implementation",
