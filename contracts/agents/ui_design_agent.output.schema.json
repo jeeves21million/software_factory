@@ -15,12 +15,22 @@
     "payload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["comp_set_uri", "token_set_uri", "component_spec_uri", "screen_spec_uri"],
+      "required": [
+        "comp_set_uri",
+        "token_set_uri",
+        "component_spec_uri",
+        "screen_spec_uri",
+        "comp_manifest_uri",
+        "quality_report_uri"
+      ],
       "properties": {
         "comp_set_uri": { "type": "string", "minLength": 1 },
         "token_set_uri": { "type": "string", "minLength": 1 },
         "component_spec_uri": { "type": "string", "minLength": 1 },
-        "screen_spec_uri": { "type": "string", "minLength": 1 }
+        "screen_spec_uri": { "type": "string", "minLength": 1 },
+        "comp_manifest_uri": { "type": "string", "minLength": 1 },
+        "quality_report_uri": { "type": "string", "minLength": 1 },
+        "quality_status": { "type": "string", "enum": ["pass", "fail"] }
       }
     },
     "handoff": {
@@ -43,6 +53,22 @@
       },
       "then": {
         "required": ["failure"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "status": { "const": "success" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": ["quality_status"],
+            "properties": {
+              "quality_status": { "const": "pass" }
+            }
+          }
+        }
       }
     }
   ]

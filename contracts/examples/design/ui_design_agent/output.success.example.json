@@ -17,7 +17,10 @@
     "comp_set_uri": "figma://file/pulsebudget-v1/screens",
     "token_set_uri": "s3://software-factory-artifacts/pulsebudget/design/tokens_v1.json",
     "component_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/component_specs_v1.md",
-    "screen_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/screen_specs_v1.md"
+    "screen_spec_uri": "s3://software-factory-artifacts/pulsebudget/design/screen_specs_v1.md",
+    "comp_manifest_uri": "s3://software-factory-artifacts/pulsebudget/design/comps/manifest.json",
+    "quality_report_uri": "s3://software-factory-artifacts/pulsebudget/design/comps/quality_report.json",
+    "quality_status": "pass"
   },
   "handoff": {
     "next_stage": "implementation",

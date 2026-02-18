@@ -10,7 +10,7 @@
     "payload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["design_brief", "inspirations", "required_screens"],
+      "required": ["design_brief", "inspirations", "required_screens", "output_spec", "quality_gate"],
       "properties": {
         "design_brief": {
           "type": "array",
@@ -37,7 +37,54 @@
           "minItems": 1,
           "items": { "type": "string", "minLength": 1 }
         },
-        "accessibility_target": { "type": "string" }
+        "accessibility_target": { "type": "string" },
+        "output_spec": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["format", "variants", "file_template", "manifest_file", "quality_report_file"],
+          "properties": {
+            "format": { "type": "string", "const": "html" },
+            "variants": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "string", "enum": ["desktop", "mobile"] },
+              "allOf": [
+                { "contains": { "const": "desktop" } },
+                { "contains": { "const": "mobile" } }
+              ]
+            },
+            "file_template": { "type": "string", "minLength": 1 },
+            "manifest_file": { "type": "string", "minLength": 1 },
+            "quality_report_file": { "type": "string", "minLength": 1 }
+          }
+        },
+        "quality_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tier",
+            "require_distinct_mobile_layouts",
+            "forbid_placeholder_copy",
+            "forbid_desktop_label_in_mobile",
+            "require_interaction_states"
+          ],
+          "properties": {
+            "tier": { "type": "string", "enum": ["premium"] },
+            "require_distinct_mobile_layouts": { "type": "boolean", "const": true },
+            "forbid_placeholder_copy": { "type": "boolean", "const": true },
+            "forbid_desktop_label_in_mobile": { "type": "boolean", "const": true },
+            "require_interaction_states": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["loading", "empty", "error", "success"] },
+              "allOf": [
+                { "contains": { "const": "loading" } },
+                { "contains": { "const": "empty" } },
+                { "contains": { "const": "error" } },
+                { "contains": { "const": "success" } }
+              ]
+            }
+          }
+        }
       },
       "anyOf": [
         { "required": ["brand_pack"] },

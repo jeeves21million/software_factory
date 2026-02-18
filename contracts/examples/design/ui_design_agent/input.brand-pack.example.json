@@ -54,11 +54,33 @@
       ]
     },
     "required_screens": [
-      "Dashboard",
-      "Transactions",
-      "Goals",
-      "Weekly Summary"
+      "dashboard",
+      "transactions",
+      "goals",
+      "weekly-summary"
     ],
-    "accessibility_target": "wcag_2_2_aa"
+    "accessibility_target": "wcag_2_2_aa",
+    "output_spec": {
+      "format": "html",
+      "variants": [
+        "desktop",
+        "mobile"
+      ],
+      "file_template": "comps/{variant}/{screen_id}.html",
+      "manifest_file": "comps/manifest.json",
+      "quality_report_file": "comps/quality_report.json"
+    },
+    "quality_gate": {
+      "tier": "premium",
+      "require_distinct_mobile_layouts": true,
+      "forbid_placeholder_copy": true,
+      "forbid_desktop_label_in_mobile": true,
+      "require_interaction_states": [
+        "loading",
+        "empty",
+        "error",
+        "success"
+      ]
+    }
   }
 }
