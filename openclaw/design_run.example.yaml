@@ -16,6 +16,7 @@ inputs:
 routing:
   use_research: auto
   use_brand_foundation_if_missing_assets: true
+  default_accessibility_target: wcag_2_2_aa
   # force_path: design_brief_only
 
 outputs:

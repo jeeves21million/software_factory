@@ -17,12 +17,16 @@ Define the minimum request/response contract for a worker that executes a design
 2. Read and validate manifest using `openclaw/design_run.schema.json` from pinned agent pack.
 3. Clone agent pack repo at `agent_pack_ref` from manifest.
 4. Build normalized input payload from human input files listed in manifest.
-5. Execute design flow with routing rules:
+5. Apply runtime defaults before agent execution:
+   - If no explicit accessibility constraints are provided (for example no `inputs.extra_context` accessibility file), set `accessibility_target` to `wcag_2_2_aa`.
+   - Emit a warning event in trace/logs for this defaulting action.
+   - Do not fail the run solely because optional accessibility input files are absent.
+6. Execute design flow with routing rules:
    - Research optional.
    - Brand foundation optional and used only when brand assets are missing or forced.
-6. Validate each agent I/O payload against schemas in `contracts/agents/`.
-7. Write artifacts and trace files to app repo paths defined in manifest outputs.
-8. Commit outputs to a new branch (`pr_branch_prefix/run_id`) and open PR when `open_pr=true`.
+7. Validate each agent I/O payload against schemas in `contracts/agents/`.
+8. Write artifacts and trace files to app repo paths defined in manifest outputs.
+9. Commit outputs to a new branch (`pr_branch_prefix/run_id`) and open PR when `open_pr=true`.
 
 ## Stage Pipeline (default)
 - `design_intake_normalizer_agent`

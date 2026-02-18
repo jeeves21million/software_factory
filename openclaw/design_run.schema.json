@@ -62,6 +62,12 @@
         "use_brand_foundation_if_missing_assets": {
           "type": "boolean"
         },
+        "default_accessibility_target": {
+          "type": "string",
+          "enum": ["wcag_2_1_aa", "wcag_2_2_aa"],
+          "default": "wcag_2_2_aa",
+          "description": "Fallback accessibility target when no accessibility constraints file is provided."
+        },
         "force_path": {
           "type": "string",
           "enum": [

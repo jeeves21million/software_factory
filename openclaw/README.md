@@ -9,3 +9,6 @@ This folder defines how app repos invoke the software factory design pipeline in
 
 ## App Repo Convention
 Add a manifest at `.openclaw/design_run.yaml` in the app repo and point OpenClaw to it.
+
+## Accessibility Fallback Rule
+If no explicit accessibility constraints file is provided, worker must default to `wcag_2_2_aa`, emit a warning in trace, and continue the run.
