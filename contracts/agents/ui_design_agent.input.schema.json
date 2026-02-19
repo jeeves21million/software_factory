@@ -100,7 +100,12 @@
             "require_interaction_states",
             "require_key_screen_options",
             "min_visual_options_per_key_screen",
-            "require_differentiation_from_competitors"
+            "require_differentiation_from_competitors",
+            "forbid_fixed_viewport_width_meta",
+            "forbid_external_cdn_assets",
+            "require_state_variant_files",
+            "state_variant_suffixes",
+            "minimum_uniqueness_score"
           ],
           "properties": {
             "tier": { "type": "string", "enum": ["premium"] },
@@ -119,7 +124,25 @@
             },
             "require_key_screen_options": { "type": "boolean", "const": true },
             "min_visual_options_per_key_screen": { "type": "integer", "minimum": 2 },
-            "require_differentiation_from_competitors": { "type": "boolean", "const": true }
+            "require_differentiation_from_competitors": { "type": "boolean", "const": true },
+            "forbid_fixed_viewport_width_meta": { "type": "boolean", "const": true },
+            "forbid_external_cdn_assets": { "type": "boolean", "const": true },
+            "require_state_variant_files": { "type": "boolean", "const": true },
+            "state_variant_suffixes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["--default", "--loading", "--empty", "--error", "--success"]
+              },
+              "allOf": [
+                { "contains": { "const": "--default" } },
+                { "contains": { "const": "--loading" } },
+                { "contains": { "const": "--empty" } },
+                { "contains": { "const": "--error" } },
+                { "contains": { "const": "--success" } }
+              ]
+            },
+            "minimum_uniqueness_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
           },
           "allOf": [
             {
@@ -127,6 +150,12 @@
                 "min_visual_options_per_key_screen": { "minimum": 2 }
               },
               "required": ["min_visual_options_per_key_screen"]
+            },
+            {
+              "properties": {
+                "minimum_uniqueness_score": { "minimum": 0.75 }
+              },
+              "required": ["minimum_uniqueness_score"]
             }
           ]
         }

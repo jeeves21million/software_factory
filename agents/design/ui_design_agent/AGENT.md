@@ -32,11 +32,14 @@ Design
 - Mobile comps must not be desktop clones; layout, hierarchy, and interaction density must be optimized for small viewports.
 - For each screen include explicit state handling where applicable: loading, empty, error, success.
 - Do not use placeholder copy (for example `Lorem ipsum`, `TBD`, `Sample text`).
+- Do not use fixed viewport meta widths (for example `width=1440`); outputs must be responsive by default.
+- Do not load external CDN/UI assets in comp HTML (fonts, icon packs, script CDN). Keep artifacts self-contained.
 - Use brand tokens and document where they are applied.
 - Produce `comps/manifest.json` with all screen ids and variant files.
 - Produce `comps/quality_report.json` with pass/fail checks for coverage, accessibility, and visual quality.
 - For key screens (`dashboard`, primary onboarding entry, schedule/calendar), produce at least two premium visual options as separate HTML artifacts per variant.
 - Provide a per-screen coverage report with missing/extra screen ids and variant parity checks.
+- Emit state variant files per screen and variant using suffixes: `--default`, `--loading`, `--empty`, `--error`, `--success`.
 
 ## Done Criteria
 Comps and specs are approved and fully implementable without design ambiguity.

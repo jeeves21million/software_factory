@@ -96,7 +96,10 @@
             "has_visual_direction_statement",
             "mobile_layouts_distinct",
             "desktop_label_in_mobile_count",
+            "fixed_viewport_width_count",
+            "external_cdn_asset_count",
             "placeholder_copy_count",
+            "uniqueness_score",
             "brand_token_usage_pass",
             "interaction_states_coverage",
             "accessibility_assertions_pass"
@@ -106,7 +109,10 @@
             "has_visual_direction_statement": { "type": "boolean" },
             "mobile_layouts_distinct": { "type": "boolean" },
             "desktop_label_in_mobile_count": { "type": "integer", "minimum": 0 },
+            "fixed_viewport_width_count": { "type": "integer", "minimum": 0 },
+            "external_cdn_asset_count": { "type": "integer", "minimum": 0 },
             "placeholder_copy_count": { "type": "integer", "minimum": 0 },
+            "uniqueness_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
             "brand_token_usage_pass": { "type": "boolean" },
             "interaction_states_coverage": {
               "type": "array",
@@ -183,7 +189,10 @@
                   "has_visual_direction_statement": { "const": true },
                   "mobile_layouts_distinct": { "const": true },
                   "desktop_label_in_mobile_count": { "const": 0 },
+                  "fixed_viewport_width_count": { "const": 0 },
+                  "external_cdn_asset_count": { "const": 0 },
                   "placeholder_copy_count": { "const": 0 },
+                  "uniqueness_score": { "minimum": 0.75 },
                   "brand_token_usage_pass": { "const": true },
                   "accessibility_assertions_pass": { "const": true }
                 }
