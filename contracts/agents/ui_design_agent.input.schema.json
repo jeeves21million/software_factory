@@ -123,7 +123,7 @@
               ]
             },
             "require_key_screen_options": { "type": "boolean", "const": true },
-            "min_visual_options_per_key_screen": { "type": "integer", "minimum": 2 },
+            "min_visual_options_per_key_screen": { "type": "integer", "minimum": 3 },
             "require_differentiation_from_competitors": { "type": "boolean", "const": true },
             "forbid_fixed_viewport_width_meta": { "type": "boolean", "const": true },
             "forbid_external_cdn_assets": { "type": "boolean", "const": true },
@@ -147,7 +147,7 @@
           "allOf": [
             {
               "properties": {
-                "min_visual_options_per_key_screen": { "minimum": 2 }
+                "min_visual_options_per_key_screen": { "minimum": 3 }
               },
               "required": ["min_visual_options_per_key_screen"]
             },

@@ -8,8 +8,12 @@ stages:
     agents: [brand_foundation_agent]
   - name: design_brief
     agents: [design_brief_agent]
+  - name: design_direction
+    agents: [design_creative_director_agent]
   - name: design
     agents: [ui_design_agent, ui_ux_spec_agent]
+  - name: design_critique
+    agents: [design_critique_agent]
   - name: architecture
     agents: [solution_arch_agent, api_contract_agent]
   - name: implementation

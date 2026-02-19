@@ -13,9 +13,14 @@ allowed_transitions:
   design_brand:
     - design_brief
   design_brief:
+    - design_direction
+  design_direction:
     - design
   design:
+    - design_critique
+  design_critique:
     - architecture
+    - design_direction
   architecture:
     - implementation
   implementation:
@@ -40,6 +45,12 @@ routing:
   startup_skip_research:
     next_stage: design_brief
     next_agent: design_brief_agent
+  design_critique_fail:
+    next_stage: design_direction
+    next_agent: design_creative_director_agent
+  design_critique_pass:
+    next_stage: architecture
+    next_agent: solution_arch_agent
   enterprise_existing_design_system:
     next_stage: architecture
     next_agent: solution_arch_agent

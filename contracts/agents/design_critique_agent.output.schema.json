@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/design_critique_agent.output.schema.json",
+  "title": "design_critique_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "overall_score", "dimensions", "blocking_issues"],
+      "properties": {
+        "decision": { "type": "string", "enum": ["pass", "fail"] },
+        "overall_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["originality", "visual_craft", "hierarchy", "brand_fit", "interaction_quality"],
+          "properties": {
+            "originality": { "type": "number", "minimum": 0, "maximum": 100 },
+            "visual_craft": { "type": "number", "minimum": 0, "maximum": 100 },
+            "hierarchy": { "type": "number", "minimum": 0, "maximum": 100 },
+            "brand_fit": { "type": "number", "minimum": 0, "maximum": 100 },
+            "interaction_quality": { "type": "number", "minimum": 0, "maximum": 100 }
+          }
+        },
+        "blocking_issues": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": { "const": "success" },
+          "payload": {
+            "properties": { "decision": { "const": "pass" } }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "overall_score": { "minimum": 85 },
+              "blocking_issues": { "maxItems": 0 }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

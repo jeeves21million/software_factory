@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/design_creative_director_agent.input.schema.json",
+  "title": "design_creative_director_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": { "$ref": "../common/job_envelope.schema.json" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["design_brief", "brand_guidance", "quality_targets"],
+      "properties": {
+        "design_brief": { "type": "object" },
+        "brand_guidance": { "type": "object" },
+        "research_summary": { "type": "object" },
+        "quality_targets": {
+          "type": "object",
+          "required": ["quality_tier"],
+          "properties": {
+            "quality_tier": { "type": "string", "const": "premium" }
+          }
+        }
+      }
+    }
+  }
+}

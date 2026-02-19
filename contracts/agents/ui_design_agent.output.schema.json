@@ -22,6 +22,7 @@
         "screen_spec_uri",
         "comp_manifest_uri",
         "quality_report_uri",
+        "critique_report_uri",
         "coverage_report",
         "generated_files",
         "quality_metrics"
@@ -33,6 +34,7 @@
         "screen_spec_uri": { "type": "string", "minLength": 1 },
         "comp_manifest_uri": { "type": "string", "minLength": 1 },
         "quality_report_uri": { "type": "string", "minLength": 1 },
+        "critique_report_uri": { "type": "string", "minLength": 1 },
         "quality_status": { "type": "string", "enum": ["pass", "fail"] },
         "coverage_report": {
           "type": "object",
@@ -127,9 +129,18 @@
             "accessibility_assertions_pass": { "type": "boolean" }
           }
         },
+        "critique_result": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["decision", "overall_score"],
+          "properties": {
+            "decision": { "type": "string", "enum": ["pass", "fail"] },
+            "overall_score": { "type": "number", "minimum": 0, "maximum": 100 }
+          }
+        },
         "key_screen_options": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 3,
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -175,7 +186,7 @@
       "then": {
         "properties": {
           "payload": {
-            "required": ["quality_status", "coverage_report", "quality_metrics"],
+            "required": ["quality_status", "coverage_report", "quality_metrics", "critique_result"],
             "properties": {
               "quality_status": { "const": "pass" },
               "coverage_report": {
@@ -195,6 +206,12 @@
                   "uniqueness_score": { "minimum": 0.75 },
                   "brand_token_usage_pass": { "const": true },
                   "accessibility_assertions_pass": { "const": true }
+                }
+              },
+              "critique_result": {
+                "properties": {
+                  "decision": { "const": "pass" },
+                  "overall_score": { "minimum": 85 }
                 }
               }
             }

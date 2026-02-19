@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/design_critique_agent.input.schema.json",
+  "title": "design_critique_agent Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "payload"],
+  "properties": {
+    "job": { "$ref": "../common/job_envelope.schema.json" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest", "quality_report", "creative_direction", "design_brief"],
+      "properties": {
+        "manifest": { "type": "object" },
+        "quality_report": { "type": "object" },
+        "creative_direction": { "type": "object" },
+        "design_brief": { "type": "object" }
+      }
+    }
+  }
+}

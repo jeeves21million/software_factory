@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/design_creative_director_agent.output.schema.json",
+  "title": "design_creative_director_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["creative_direction", "preferred_direction", "anti_patterns", "signature_interactions"],
+      "properties": {
+        "creative_direction": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "rationale", "visual_signals"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^direction-[0-9]+$" },
+              "name": { "type": "string", "minLength": 1 },
+              "rationale": { "type": "string", "minLength": 1 },
+              "visual_signals": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "preferred_direction": { "type": "string", "pattern": "^direction-[0-9]+$" },
+        "anti_patterns": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "signature_interactions": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "const": "design" },
+        "next_agent": { "type": "string", "const": "ui_design_agent" },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  }
+}
