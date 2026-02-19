@@ -1,0 +1,43 @@
+{
+  "required_paths": [
+    "$.status",
+    "$.payload",
+    "$.payload.plan_version",
+    "$.payload.workstreams[]",
+    "$.payload.execution_order[]",
+    "$.payload.screen_batches[]",
+    "$.payload.quality_gates[]",
+    "$.payload.risks[]",
+    "$.payload.assumptions[]",
+    "$.payload.approval",
+    "$.handoff",
+    "$.handoff.next_stage",
+    "$.handoff.next_agent"
+  ],
+  "non_empty_arrays": [
+    "$.payload.workstreams[]",
+    "$.payload.execution_order[]",
+    "$.payload.screen_batches[]"
+  ],
+  "one_of_required_paths": [
+    [
+      "$.handoff.payload.plan_uri",
+      "$.handoff.payload.plan_artifact_uri"
+    ]
+  ],
+  "equals": [
+    {
+      "path": "$.status",
+      "value": "success"
+    },
+    {
+      "path": "$.handoff.next_stage",
+      "value": "design_plan_review"
+    },
+    {
+      "path": "$.handoff.next_agent",
+      "value": "ui_design_plan_reviewer_agent"
+    }
+  ]
+}
+

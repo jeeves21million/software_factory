@@ -1,0 +1,14 @@
+{
+  "required_paths": [
+    "$.status",
+    "$.payload",
+    "$.payload.decision"
+  ],
+  "equals": [
+    {
+      "path": "$.status",
+      "value": "success"
+    }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "required_paths": [
+    "$.stage"
+  ],
+  "one_of_required_paths": [
+    [
+      "$.payload.creative_direction[]",
+      "$.creative_direction[]"
+    ]
+  ]
+}
+

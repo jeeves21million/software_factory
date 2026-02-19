@@ -1,0 +1,21 @@
+{
+  "required_paths": [
+    "$.status",
+    "$.payload"
+  ],
+  "equals": [
+    {
+      "path": "$.status",
+      "value": "success"
+    }
+  ],
+  "one_of_required_paths": [
+    [
+      "$.payload.routes_manifest",
+      "$.payload.routes_manifest_uri",
+      "$.payload.route_manifest",
+      "$.payload.generated_routes[]"
+    ]
+  ]
+}
+

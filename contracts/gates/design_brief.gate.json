@@ -1,0 +1,18 @@
+{
+  "required_paths": [
+    "$.status",
+    "$.payload",
+    "$.payload.design_brief",
+    "$.payload.design_brief.required_screens[]"
+  ],
+  "non_empty_arrays": [
+    "$.payload.design_brief.required_screens[]"
+  ],
+  "equals": [
+    {
+      "path": "$.status",
+      "value": "success"
+    }
+  ]
+}
+
