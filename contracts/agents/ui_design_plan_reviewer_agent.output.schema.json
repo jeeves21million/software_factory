@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://software-factory-agents/contracts/agents/ui_design_plan_reviewer_agent.output.schema.json",
+  "title": "ui_design_plan_reviewer_agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "artifacts", "payload", "handoff"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "failed"] },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "score", "reasons", "recommended_changes"],
+      "properties": {
+        "decision": { "type": "string", "enum": ["pass", "fail"] },
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "recommended_changes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_stage", "next_agent", "payload"],
+      "properties": {
+        "next_stage": { "type": "string", "enum": ["design", "design_plan"] },
+        "next_agent": { "type": "string", "enum": ["ui_design_agent", "ui_design_planner_agent"] },
+        "payload": { "type": "object" }
+      }
+    },
+    "failure": { "$ref": "../common/failure.schema.json" }
+  }
+}

@@ -72,10 +72,30 @@
         "output_spec": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["format", "variants", "file_template", "manifest_file", "quality_report_file"],
+          "required": [
+            "format",
+            "framework",
+            "language",
+            "bundler",
+            "styling",
+            "router",
+            "state_library",
+            "required_viewports",
+            "app_root",
+            "routes_manifest_file",
+            "quality_report_file",
+            "component_registry_file",
+            "state_model_file"
+          ],
           "properties": {
-            "format": { "type": "string", "const": "html" },
-            "variants": {
+            "format": { "type": "string", "const": "react_spa" },
+            "framework": { "type": "string", "const": "react" },
+            "language": { "type": "string", "const": "typescript" },
+            "bundler": { "type": "string", "const": "vite" },
+            "styling": { "type": "string", "const": "tailwindcss" },
+            "router": { "type": "string", "const": "react-router-dom" },
+            "state_library": { "type": "string", "const": "zustand" },
+            "required_viewports": {
               "type": "array",
               "minItems": 2,
               "items": { "type": "string", "enum": ["desktop", "mobile"] },
@@ -84,9 +104,11 @@
                 { "contains": { "const": "mobile" } }
               ]
             },
-            "file_template": { "type": "string", "minLength": 1 },
-            "manifest_file": { "type": "string", "minLength": 1 },
-            "quality_report_file": { "type": "string", "minLength": 1 }
+            "app_root": { "type": "string", "minLength": 1 },
+            "routes_manifest_file": { "type": "string", "minLength": 1 },
+            "quality_report_file": { "type": "string", "minLength": 1 },
+            "component_registry_file": { "type": "string", "minLength": 1 },
+            "state_model_file": { "type": "string", "minLength": 1 }
           }
         },
         "quality_gate": {
@@ -94,24 +116,20 @@
           "additionalProperties": false,
           "required": [
             "tier",
-            "require_distinct_mobile_layouts",
+            "require_full_screen_coverage",
+            "require_responsive_behavior",
             "forbid_placeholder_copy",
-            "forbid_desktop_label_in_mobile",
             "require_interaction_states",
-            "require_key_screen_options",
-            "min_visual_options_per_key_screen",
-            "require_differentiation_from_competitors",
-            "forbid_fixed_viewport_width_meta",
-            "forbid_external_cdn_assets",
-            "require_state_variant_files",
-            "state_variant_suffixes",
+            "require_accessibility_assertions",
+            "require_local_mock_data",
+            "require_no_live_api_calls",
             "minimum_uniqueness_score"
           ],
           "properties": {
             "tier": { "type": "string", "enum": ["premium"] },
-            "require_distinct_mobile_layouts": { "type": "boolean", "const": true },
+            "require_full_screen_coverage": { "type": "boolean", "const": true },
+            "require_responsive_behavior": { "type": "boolean", "const": true },
             "forbid_placeholder_copy": { "type": "boolean", "const": true },
-            "forbid_desktop_label_in_mobile": { "type": "boolean", "const": true },
             "require_interaction_states": {
               "type": "array",
               "items": { "type": "string", "enum": ["loading", "empty", "error", "success"] },
@@ -122,35 +140,16 @@
                 { "contains": { "const": "success" } }
               ]
             },
-            "require_key_screen_options": { "type": "boolean", "const": true },
-            "min_visual_options_per_key_screen": { "type": "integer", "minimum": 3 },
-            "require_differentiation_from_competitors": { "type": "boolean", "const": true },
-            "forbid_fixed_viewport_width_meta": { "type": "boolean", "const": true },
-            "forbid_external_cdn_assets": { "type": "boolean", "const": true },
-            "require_state_variant_files": { "type": "boolean", "const": true },
-            "state_variant_suffixes": {
+            "require_accessibility_assertions": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["--default", "--loading", "--empty", "--error", "--success"]
-              },
-              "allOf": [
-                { "contains": { "const": "--default" } },
-                { "contains": { "const": "--loading" } },
-                { "contains": { "const": "--empty" } },
-                { "contains": { "const": "--error" } },
-                { "contains": { "const": "--success" } }
-              ]
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
             },
+            "require_local_mock_data": { "type": "boolean", "const": true },
+            "require_no_live_api_calls": { "type": "boolean", "const": true },
             "minimum_uniqueness_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
           },
           "allOf": [
-            {
-              "properties": {
-                "min_visual_options_per_key_screen": { "minimum": 3 }
-              },
-              "required": ["min_visual_options_per_key_screen"]
-            },
             {
               "properties": {
                 "minimum_uniqueness_score": { "minimum": 0.75 }

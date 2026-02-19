@@ -16,11 +16,14 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "comp_set_uri",
-        "token_set_uri",
-        "component_spec_uri",
-        "screen_spec_uri",
-        "comp_manifest_uri",
+        "spa_app_uri",
+        "tech_stack",
+        "design_system_uri",
+        "component_registry_uri",
+        "route_map_uri",
+        "state_model_uri",
+        "mock_data_uri",
+        "interaction_scenarios_uri",
         "quality_report_uri",
         "critique_report_uri",
         "coverage_report",
@@ -28,11 +31,26 @@
         "quality_metrics"
       ],
       "properties": {
-        "comp_set_uri": { "type": "string", "minLength": 1 },
-        "token_set_uri": { "type": "string", "minLength": 1 },
-        "component_spec_uri": { "type": "string", "minLength": 1 },
-        "screen_spec_uri": { "type": "string", "minLength": 1 },
-        "comp_manifest_uri": { "type": "string", "minLength": 1 },
+        "spa_app_uri": { "type": "string", "minLength": 1 },
+        "tech_stack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["framework", "language", "bundler", "styling", "router", "state_library"],
+          "properties": {
+            "framework": { "type": "string", "const": "react" },
+            "language": { "type": "string", "const": "typescript" },
+            "bundler": { "type": "string", "const": "vite" },
+            "styling": { "type": "string", "const": "tailwindcss" },
+            "router": { "type": "string", "const": "react-router-dom" },
+            "state_library": { "type": "string", "const": "zustand" }
+          }
+        },
+        "design_system_uri": { "type": "string", "minLength": 1 },
+        "component_registry_uri": { "type": "string", "minLength": 1 },
+        "route_map_uri": { "type": "string", "minLength": 1 },
+        "state_model_uri": { "type": "string", "minLength": 1 },
+        "mock_data_uri": { "type": "string", "minLength": 1 },
+        "interaction_scenarios_uri": { "type": "string", "minLength": 1 },
         "quality_report_uri": { "type": "string", "minLength": 1 },
         "critique_report_uri": { "type": "string", "minLength": 1 },
         "quality_status": { "type": "string", "enum": ["pass", "fail"] },
@@ -41,10 +59,11 @@
           "additionalProperties": false,
           "required": [
             "required_screen_ids",
-            "generated_screen_ids",
+            "implemented_screen_ids",
             "missing_screen_ids",
             "extra_screen_ids",
-            "variants",
+            "required_viewports",
+            "route_count",
             "complete"
           ],
           "properties": {
@@ -52,7 +71,7 @@
               "type": "array",
               "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
             },
-            "generated_screen_ids": {
+            "implemented_screen_ids": {
               "type": "array",
               "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
             },
@@ -64,7 +83,7 @@
               "type": "array",
               "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
             },
-            "variants": {
+            "required_viewports": {
               "type": "array",
               "items": { "type": "string", "enum": ["desktop", "mobile"] },
               "allOf": [
@@ -72,6 +91,7 @@
                 { "contains": { "const": "mobile" } }
               ]
             },
+            "route_count": { "type": "integer", "minimum": 1 },
             "complete": { "type": "boolean" }
           }
         },
@@ -81,11 +101,23 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["screen_id", "variant", "path", "sha256"],
+            "required": ["path", "sha256", "kind"],
             "properties": {
-              "screen_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-              "variant": { "type": "string", "enum": ["desktop", "mobile"] },
-              "path": { "type": "string", "pattern": "^comps\\/(desktop|mobile)\\/[a-z0-9]+(?:-[a-z0-9]+)*\\.html$" },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "app_entry",
+                  "route_component",
+                  "ui_component",
+                  "state",
+                  "mock_data",
+                  "style",
+                  "config",
+                  "manifest",
+                  "report"
+                ]
+              },
+              "path": { "type": "string", "minLength": 1 },
               "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
             }
           }
@@ -95,27 +127,18 @@
           "additionalProperties": false,
           "required": [
             "quality_tier",
-            "has_visual_direction_statement",
-            "mobile_layouts_distinct",
-            "desktop_label_in_mobile_count",
-            "fixed_viewport_width_count",
-            "external_cdn_asset_count",
-            "placeholder_copy_count",
-            "uniqueness_score",
-            "brand_token_usage_pass",
+            "responsive_behavior_pass",
             "interaction_states_coverage",
-            "accessibility_assertions_pass"
+            "accessibility_assertions_pass",
+            "placeholder_copy_count",
+            "live_api_call_count",
+            "brand_token_usage_pass",
+            "uniqueness_score",
+            "prototype_interactivity_pass"
           ],
           "properties": {
             "quality_tier": { "type": "string", "const": "premium" },
-            "has_visual_direction_statement": { "type": "boolean" },
-            "mobile_layouts_distinct": { "type": "boolean" },
-            "desktop_label_in_mobile_count": { "type": "integer", "minimum": 0 },
-            "fixed_viewport_width_count": { "type": "integer", "minimum": 0 },
-            "external_cdn_asset_count": { "type": "integer", "minimum": 0 },
-            "placeholder_copy_count": { "type": "integer", "minimum": 0 },
-            "uniqueness_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "brand_token_usage_pass": { "type": "boolean" },
+            "responsive_behavior_pass": { "type": "boolean" },
             "interaction_states_coverage": {
               "type": "array",
               "items": { "type": "string", "enum": ["loading", "empty", "error", "success"] },
@@ -126,7 +149,12 @@
                 { "contains": { "const": "success" } }
               ]
             },
-            "accessibility_assertions_pass": { "type": "boolean" }
+            "accessibility_assertions_pass": { "type": "boolean" },
+            "placeholder_copy_count": { "type": "integer", "minimum": 0 },
+            "live_api_call_count": { "type": "integer", "minimum": 0 },
+            "brand_token_usage_pass": { "type": "boolean" },
+            "uniqueness_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "prototype_interactivity_pass": { "type": "boolean" }
           }
         },
         "critique_result": {
@@ -136,22 +164,6 @@
           "properties": {
             "decision": { "type": "string", "enum": ["pass", "fail"] },
             "overall_score": { "type": "number", "minimum": 0, "maximum": 100 }
-          }
-        },
-        "key_screen_options": {
-          "type": "array",
-          "minItems": 3,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["screen_id", "option_id", "desktop_path", "mobile_path", "rationale"],
-            "properties": {
-              "screen_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-              "option_id": { "type": "string", "pattern": "^option-[0-9]+$" },
-              "desktop_path": { "type": "string", "pattern": "^comps\\/desktop\\/[a-z0-9]+(?:-[a-z0-9]+)*--option-[0-9]+\\.html$" },
-              "mobile_path": { "type": "string", "pattern": "^comps\\/mobile\\/[a-z0-9]+(?:-[a-z0-9]+)*--option-[0-9]+\\.html$" },
-              "rationale": { "type": "string", "minLength": 1 }
-            }
           }
         }
       }
@@ -163,7 +175,26 @@
       "properties": {
         "next_stage": { "type": "string", "const": "implementation" },
         "next_agent": { "type": "string", "const": "frontend_dev_agent" },
-        "payload": { "type": "object" }
+        "payload": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["tech_stack"],
+          "properties": {
+            "tech_stack": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["framework", "language", "bundler", "styling", "router", "state_library"],
+              "properties": {
+                "framework": { "type": "string", "const": "react" },
+                "language": { "type": "string", "const": "typescript" },
+                "bundler": { "type": "string", "const": "vite" },
+                "styling": { "type": "string", "const": "tailwindcss" },
+                "router": { "type": "string", "const": "react-router-dom" },
+                "state_library": { "type": "string", "const": "zustand" }
+              }
+            }
+          }
+        }
       }
     },
     "failure": { "$ref": "../common/failure.schema.json" }
@@ -186,7 +217,7 @@
       "then": {
         "properties": {
           "payload": {
-            "required": ["quality_status", "coverage_report", "quality_metrics", "critique_result"],
+            "required": ["quality_status", "coverage_report", "quality_metrics"],
             "properties": {
               "quality_status": { "const": "pass" },
               "coverage_report": {
@@ -197,15 +228,13 @@
               },
               "quality_metrics": {
                 "properties": {
-                  "has_visual_direction_statement": { "const": true },
-                  "mobile_layouts_distinct": { "const": true },
-                  "desktop_label_in_mobile_count": { "const": 0 },
-                  "fixed_viewport_width_count": { "const": 0 },
-                  "external_cdn_asset_count": { "const": 0 },
+                  "responsive_behavior_pass": { "const": true },
                   "placeholder_copy_count": { "const": 0 },
-                  "uniqueness_score": { "minimum": 0.75 },
+                  "live_api_call_count": { "const": 0 },
                   "brand_token_usage_pass": { "const": true },
-                  "accessibility_assertions_pass": { "const": true }
+                  "uniqueness_score": { "minimum": 0.75 },
+                  "accessibility_assertions_pass": { "const": true },
+                  "prototype_interactivity_pass": { "const": true }
                 }
               },
               "critique_result": {

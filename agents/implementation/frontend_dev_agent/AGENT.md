@@ -24,6 +24,9 @@ Implementation
 - Emit deterministic, machine-readable outputs where applicable.
 - Return explicit failure classification: infra, contract_mismatch, validation_failed, or unknown.
 - Never mutate artifacts from prior stages in place; emit new versioned artifacts.
+- Honor `handoff.payload.tech_stack` from design stage as required implementation stack.
+- Default stack (when no explicit override is provided): React + TypeScript + Vite + Tailwind CSS + react-router-dom + Zustand.
+- Do not swap framework/styling stack without explicit project policy override.
 
 ## Done Criteria
 Frontend behavior matches specs and compiles cleanly.

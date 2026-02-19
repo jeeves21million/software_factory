@@ -10,12 +10,25 @@
     "payload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["manifest", "quality_report", "creative_direction", "design_brief"],
+      "required": [
+        "design_brief",
+        "creative_direction",
+        "ui_design_output",
+        "ux_spec",
+        "routes_manifest",
+        "component_registry",
+        "state_model",
+        "quality_report"
+      ],
       "properties": {
-        "manifest": { "type": "object" },
-        "quality_report": { "type": "object" },
+        "design_brief": { "type": "object" },
         "creative_direction": { "type": "object" },
-        "design_brief": { "type": "object" }
+        "ui_design_output": { "type": "object" },
+        "ux_spec": { "type": "object" },
+        "routes_manifest": { "type": "object" },
+        "component_registry": { "type": "object" },
+        "state_model": { "type": "object" },
+        "quality_report": { "type": "object" }
       }
     }
   }
