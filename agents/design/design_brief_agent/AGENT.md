@@ -16,7 +16,7 @@ Design brief
 - Contract-valid design brief JSON
 - Canonical required screen catalog
 - Premium differentiation thesis and quality targets
-- Handoff payload for `ui_design_agent`
+- Handoff payload for `ui_design_planner_agent`
 
 ## Execution Rules
 - Follow `contracts/agents/design_brief_agent.output.schema.json` exactly.
@@ -31,6 +31,8 @@ Design brief
 - Include enough required screens to cover all core user journeys and operational modules in the source documents.
 - Preserve traceability from brief decisions to source inputs.
 - Define explicit differentiation goals and explicit anti-goals to avoid generic SaaS outputs.
+- Set `handoff.next_stage` to `design_plan`.
+- Set `handoff.next_agent` to `ui_design_planner_agent`.
 
 ## Quality Bar
 - Brief must be specific enough that `ui_design_agent` can generate high-fidelity comps without asking clarifying questions.

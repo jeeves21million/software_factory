@@ -1,0 +1,18 @@
+{
+  "required_paths": [
+    "$.status",
+    "$.payload",
+    "$.payload.build_ok",
+    "$.payload.commands"
+  ],
+  "equals": [
+    {
+      "path": "$.status",
+      "value": "success"
+    },
+    {
+      "path": "$.payload.build_ok",
+      "value": true
+    }
+  ]
+}

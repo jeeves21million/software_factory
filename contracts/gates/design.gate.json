@@ -11,6 +11,7 @@
   ],
   "one_of_required_paths": [
     [
+      "$.payload.route_map_uri",
       "$.payload.routes_manifest",
       "$.payload.routes_manifest_uri",
       "$.payload.route_manifest",
@@ -18,4 +19,3 @@
     ]
   ]
 }
-

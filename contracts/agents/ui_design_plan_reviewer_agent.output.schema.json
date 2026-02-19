@@ -10,7 +10,21 @@
     "summary": { "type": "string" },
     "artifacts": {
       "type": "array",
-      "items": { "$ref": "../common/artifact_metadata.schema.json" }
+      "items": {
+        "anyOf": [
+          { "$ref": "../common/artifact_metadata.schema.json" },
+          {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["path", "type"],
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 },
+              "description": { "type": "string" }
+            }
+          }
+        ]
+      }
     },
     "payload": {
       "type": "object",
